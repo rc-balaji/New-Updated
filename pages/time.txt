@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {{
+            --primary-color: #4CAF50;
+            --text-color: #333;
+            --light-text: #555;
+            --bg-color: #f4f4f4;
+            --card-bg: #fff;
+            --border-color: #ddd;
+            --link-color: #007BFF;
+        }}
+
+        * {{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }}
+
+        body {{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }}
+
+        .container {{
+            max-width: 500px;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }}
+
+        h1 {{
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }}
+
+        .form-group {{
+            margin-bottom: 20px;
+        }}
+
+        label {{
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light-text);
+        }}
+
+        input {{
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }}
+
+        button {{
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }}
+
+        .current-time {{
+            text-align: center;
+            font-size: 1.2em;
+            padding: 12px;
+            margin: 20px 0;
+            background-color: #eee;
+            border-radius: 6px;
+        }}
+
+        .back-link {{
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 500;
+        }}
+
+        @media (max-width: 480px) {{
+            body {{
+                padding: 15px;
+            }}
+
+            .container {{
+                padding: 15px;
+            }}
+
+            h1 {{
+                font-size: 22px;
+            }}
+
+            input, button {{
+                font-size: 15px;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time Management</h1>
+
+        <div class="current-time">
+        <label for="current-time">Current RTC Time (HH:MM:SS)</label>
+            <span name="current-time" id="current-time">{{current_time}}</span>
+        </div>
+
+        <form method="post" action="/set-time">
+            <div class="form-group">
+                <label for="time">Set Time (HH:MM)</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <button type="submit">Save Time</button>
+        </form>
+
+        <p><a href="/" class="back-link">Back to Main Menu</a></p>
+    </div>
+
+    <script>
+        function updateTime() {{
+            fetch('/get-current-time')
+                .then(res => res.text())
+                .then(time => {{
+                    const onlyTime = time.split(' ')[1]?.split('.')[0]; // Extract HH:MM:SS
+                    document.getElementById('current-time').textContent = onlyTime || time;
+                }})
+                .catch(err => console.error('Time fetch failed', err));
+        }}
+
+        document.addEventListener('DOMContentLoaded', () => {{
+            updateTime();
+            const now = new Date();
+            const timeStr = now.getHours().toString().padStart(2, '0') + ':' +
+                            now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('time').value = timeStr;
+            setInterval(updateTime, 1000);
+        }});
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+[
+  {
+    "color": [0, 0, 0],
+    "led_pin": 12,
+    "button_pin": 13,
+    "schedules": [
+      { "color": [65, 0, 65], "time": "03:20", "enabled": false },
+      { "color": [65, 0, 0], "time": "15:33", "enabled": false }
+    ],
+    "enabled": true,
+    "clicked": false
+  },
+  {
+    "color": [0, 0, 0],
+    "led_pin": 25,
+    "button_pin": 14,
+    "schedules": [
+      { "color": [65, 65, 65], "time": "01:10", "enabled": false },
+      { "color": [65, 65, 0], "time": "02:10", "enabled": false },
+      { "color": [0, 65, 65], "time": "15:20", "enabled": false }
+    ],
+    "enabled": true,
+    "clicked": false
+  },
+  {
+    "color": [0, 0, 0],
+    "led_pin": 26,
+    "button_pin": 15,
+    "schedules": [
+      { "color": [65, 0, 65], "time": "14:05", "enabled": false },
+      { "color": [0, 65, 65], "time": "15:15", "enabled": false }
+    ],
+    "enabled": true,
+    "clicked": false
+  },
+  {
+    "color": [0, 0, 0],
+    "led_pin": 27,
+    "button_pin": 16,
+    "schedules": [
+      { "color": [0, 65, 0], "time": "02:14", "enabled": false },
+      { "color": [65, 65, 0], "time": "15:17", "enabled": false },
+      { "color": [0, 0, 65], "time": "15:26", "enabled": false }
+    ],
+    "enabled": true,
+    "clicked": false
+  }
+]

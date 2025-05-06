@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Configuration</title>
+    <style>
+        body {{ 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: #f8f9fa; 
+            color: #343a40;
+        }}
+        .form-container {{ 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            margin-top: 20px; 
+        }}
+        .form-group {{ 
+            margin-bottom: 20px; 
+        }}
+        label {{ 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #495057;
+        }}
+        input {{ 
+            width: 100%; 
+            padding: 12px; 
+            box-sizing: border-box; 
+            border: 1px solid #ced4da; 
+            border-radius: 6px; 
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }}
+        input:focus {{
+            border-color: #80bdff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+        }}
+        button {{ 
+            padding: 12px 24px; 
+            font-size: 16px; 
+            background-color: #28a745; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }}
+        button:hover {{ 
+            background-color: #218838; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }}
+        .back-btn {{ 
+            background-color: #6c757d; 
+            margin-bottom: 20px; 
+        }}
+        .back-btn:hover {{ 
+            background-color: #5a6268; 
+        }}
+        h2 {{
+            color: #2c3e50;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }}
+        .alert {{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }}
+        @keyframes fadeIn {{
+            from {{ opacity: 0; transform: translateY(-20px); }}
+            to {{ opacity: 1; transform: translateY(0); }}
+        }}
+    </style>
+</head>
+<body>
+    <div id="alert" class="alert">Configuration saved successfully!</div>
+    <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+    <div class="form-container">
+        <h2>Access Point Configuration</h2>
+        <form action="/save-ap" method="post" onsubmit="showAlert()">
+            <div class="form-group">
+                <label for="ssid">SSID:</label>
+                <input type="text" id="ssid" name="ssid" value="{ssid}" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="{password}" required>
+                <div style="display: flex; align-items: center; margin-top: 8px; width: 100%;">
+                    <label for="showPassword" style="margin-right: 10px;">Show Password</label>
+                    <input type="checkbox" id="showPassword" onclick="togglePassword()" style="width: 18px; height: 18px; cursor: pointer;">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="kit_no">Kit Number:</label>
+                <input type="number" id="kit_no" name="kit_no" value="{kit_no}" required>
+            </div>
+            <div class="form-group">
+                <label for="static_no">Static Number:</label>
+                <input type="number" id="static_no" name="static_no" value="{static_no}" required>
+            </div>
+            <button type="submit">Save Configuration</button>
+        </form>
+    </div>
+    <script>
+        function showAlert() {{
+            document.getElementById('alert').style.display = 'block';
+            setTimeout(() => {{
+                document.getElementById('alert').style.display = 'none';
+            }}, 3000);
+        }}
+
+        function togglePassword() {{
+            const passwordInput = document.getElementById("password");
+            const showPasswordCheckbox = document.getElementById("showPassword");
+            passwordInput.type = showPasswordCheckbox.checked ? "text" : "password";
+        }}
+    </script>
+</body>
+</html>
