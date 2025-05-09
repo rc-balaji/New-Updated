@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.current-time {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.indicator {
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.buzzer.off,
+.relay.off {
+    background-color: #4CAF50;
+}
+
+.buzzer.on,
+.relay.on {
+    background-color: #f44336;
+}
+
+.bins-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.bin {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.led-preview {
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+.bin-state {
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+.bin-state.on {
+    background-color: #4CAF50;
+}
+
+.bin-state.off {
+    background-color: #f44336;
+}
+
+.toggle-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.toggle-btn:hover {
+    background-color: #0b7dda;
+}
+
+.queue {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+.queue-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.queue-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #999;
+}

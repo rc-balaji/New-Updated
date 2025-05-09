@@ -1,4 +1,4 @@
-from lib.ds3231 import DS3231
+from ds3231 import DS3231
 import utime
 
 def main():
